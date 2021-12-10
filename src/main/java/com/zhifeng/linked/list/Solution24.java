@@ -49,6 +49,33 @@ public class Solution24 {
         return newHead;
     }
 
+    public ListNode swap3(ListNode head) {
+
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        ListNode newHead = head.next;
+        head.next = swap3(newHead.next);
+        newHead.next = head;
+        return newHead;
+    }
+
+    public ListNode swap4(ListNode head) {
+        ListNode dummyHead = new ListNode(0);
+        dummyHead.next = head;
+        ListNode temp = dummyHead;
+        while (temp.next != null && temp.next.next != null) {
+            ListNode node1 = temp.next;
+            ListNode node2 = temp.next.next;
+            temp.next = node2;
+            node1.next = node2.next;
+            node2.next = node1;
+            temp = node1;
+        }
+        return dummyHead.next;
+    }
+
     public static void main(String[] args) {
         ListNode listNode = new ListNode(2);
         ListNode listNode1 = new ListNode(4);
